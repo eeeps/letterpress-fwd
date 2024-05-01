@@ -31,10 +31,33 @@
 
 
 html {
+
+	/* font stacks */
 	--garamond: "EB Garamond", serif;
 	--inter: "Inter", sans-serif;
+	
+	/* colors */
 	--vermillion: #dd3b21;
+
+	/* type sizing scale */
+	--text--1: 0.75em;
+	--text-0: 0.875em;
+	--text-1: 1em;
+	--text-2: 1.125em;
+	--text-3: 1.25em;
+	--text-4: 1.375em;
+	--text-5: 1.5em;
+	--text-6: 1.75em;
+	--text-7: 2.25em;
+	
 	font-family: var(--garamond);
+	font-size: var(--text-2);
+
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
