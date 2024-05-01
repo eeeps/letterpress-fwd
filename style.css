@@ -1,0 +1,54 @@
+
+/* Fonts
+ * TODO 
+ *  - any use for the variable fonts?
+ *  - optimize font files
+ *  	- Glyphhanger
+ *  - fallbacks or is woff2 support ~universal these days?
+ *  - preload in HTML (or HTTP)
+ *  - swap or nah? 
+ */
+
+@font-face {
+	font-family: "EB Garamond";
+	src:
+		url("/fonts/EB_Garamond/static/EBGaramond-Regular.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Inter";
+	font-weight: normal;
+	src:
+		url("/fonts/Inter/static/Inter-Regular.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Inter";
+	font-weight: bold;
+	src:
+		url("/fonts/Inter/static/Inter-Bold.woff2") format("woff2");
+}
+
+
+html {
+	--garamond: "EB Garamond", serif;
+	--inter: "Inter", sans-serif;
+	--vermillion: #dd3b21;
+	font-family: var(--garamond);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--inter);
+}
+
+a { color: var(--vermillion); }
+
+footer {
+	font-family: var(--inter);
+	background: var(--vermillion);
+	color: white;
+}
+
+footer a {
+	color: white;
+}
