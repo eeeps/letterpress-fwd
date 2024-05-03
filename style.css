@@ -62,6 +62,29 @@ html, body {
 	padding: 0;
 }
 
+
+/* grid */
+
+/* body has flow layout
+   the three sectioning elements stacked within it have this grid */
+body > header,
+body > main,
+body > footer {
+	display: grid;
+	grid-template-columns: 1.5rem 1fr 1.5rem;
+}
+
+/* everything in header, man, and footer gets put in the main content column
+   (but can break out if it needs to) */
+body > header > *,
+body > main > *,
+body > footer > * {
+	grid-column: 2;
+}
+
+
+/* basics */
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: var(--inter);
 }
@@ -69,6 +92,22 @@ h1, h2, h3, h4, h5, h6 {
 a {
 	color: var(--vermillion);
 }
+
+img {
+	width: 100%;
+	height: auto;
+	max-width: 20em; /* TODO stopgap placeholder... */
+}
+
+/* header */
+
+
+/* intro */
+/* projectOne */
+/* fwd */
+
+
+/* footer */
 
 footer {
 	font-family: var(--inter);
