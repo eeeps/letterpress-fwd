@@ -38,6 +38,9 @@ html {
 	
 	/* colors */
 	--vermillion: #dd3b21;
+	--vermillion-r: 86.667%;
+	--vermillion-g: 23.137%;
+	--vermillion-b: 12.941%;
 
 	/* type sizing scale */
 	--font-size--1: 0.75rem;
@@ -51,7 +54,16 @@ html {
 	--font-size-7: 2.25rem;
 	
 	font-family: var(--garamond);
-	font-size: var(--font-size-2);
+	
+	--section-gradient: linear-gradient(
+		to top,
+		rgb(
+			var(--vermillion-r)
+			var(--vermillion-g)
+			var(--vermillion-b) / 0.05
+		),
+		transparent 20%
+	);
 
 }
 
@@ -65,19 +77,19 @@ html, body {
 
 /* grid */
 
-/* body has flow layout
-   the three sectioning elements stacked within it have this grid */
+/* body, and the sections within main, are stacked using normal flow layout */
 body > header,
-body > main,
+main > section,
 body > footer {
 	display: grid;
 	grid-template-columns: 1.5rem 1fr 1.5rem;
 }
 
-/* everything in header, man, and footer gets put in the main content column
-   (but can break out if it needs to) */
+/* everything in header, sections within main, and footer
+   gets put in the center content column
+   (but can break out into the left/right margins to be full bleed if it needs to) */
 body > header > *,
-body > main > *,
+main > section > *,
 body > footer > * {
 	grid-column: 2;
 }
@@ -85,8 +97,19 @@ body > footer > * {
 
 /* basics */
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, hgroup, dt {
 	font-family: var(--inter);
+	font-kerning: normal; /* apply font kerning instructions */
+	text-wrap: balance; /* in case of wrapping */
+}
+
+hgroup > h1,
+hgroup > h2,
+hgroup > h3,
+hgroup > h4,
+hgroup > h5,
+hgroup > h6 {
+	margin-bottom: 0;
 }
 
 a {
@@ -99,12 +122,85 @@ img {
 	max-width: 20em; /* TODO stopgap placeholder... */
 }
 
+.small-caps-head {
+	font-size: var(--font-size--1);
+	text-transform: uppercase;
+}
+
+.head {
+	font-weight: bold;
+	font-size: var(--font-size-0);
+}
+
 /* header */
 
+.header-wrapper {
+	border-top: 1px solid black;
+}
+
+.org-name {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: var(--font-size-0);
+}
+
+.org-subhead {
+	margin-top: 0;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: var(--font-size-0);
+}
+
+header a[href="#signup"] {
+	display: none;
+}
 
 /* intro */
+
+.intro {
+	background-image: linear-gradient(
+		to top,
+		rgb(
+			var(--vermillion-r)
+			var(--vermillion-g)
+			var(--vermillion-b) / 0.05
+		),
+		transparent 20%
+	);
+}
+
+.lede {
+	font-size: var(--font-size-4);
+}
+
+.carousel {
+	grid-column: 0 / 3;
+}
+
+.carousel figcaption {
+	border-block-start: 1px solid black;
+	font-family: var(--inter);
+	font-size: var(--font-size--1);
+}
+
+.title {
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+.description {
+	margin-block-start: 0;
+}
+
 /* projectOne */
 /* fwd */
+
+.giantFwd {
+	font-size: 100px;
+	font-family: var(--garamond);
+	font-weight: normal;
+	margin-block: 0;
+}
 
 
 /* footer */
