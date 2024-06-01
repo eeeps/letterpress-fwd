@@ -193,6 +193,92 @@ header a[href="#signup"] {
 }
 
 /* projectOne */
+
+/* timelineSection */
+
+.timeline {
+
+	--dot-diameter: 1rem;
+	--stroke-width: 0.25rem;
+	--between-items-gap: 6rem;
+	--timeline-to-content-gap: 1.5rem;
+
+	border-left: var(--stroke-width) solid var(--vermillion); /* todo clip or replace with clipped svg */
+
+}
+
+.timeline div {
+	margin-block-start: calc( var(--between-items-gap) / 2);
+	margin-block-end: calc( var(--between-items-gap) / 2);
+	margin-inline-start: var(--timeline-to-content-gap);
+}
+
+/* pull first item up
+   so that the stroke starts in the middle of the first dot */
+.timeline div:first-child {
+	margin-block-start: calc( -1 * var(--dot-diameter) / 2 );
+}
+
+/* gap between years and text */
+.timeline dt {
+	margin-block-end: 1rem;
+}
+
+/* dots */
+.timeline dt::before {
+
+	/* draw a dot */
+	content: "";
+	display: inline-block;
+	inline-size: var(--dot-diameter);
+	block-size: var(--dot-diameter);
+	/* can't concat in url(), doh
+	   had to use the hex-code for vermillion here,
+	   won't update with variable change */
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23dd3b21' /></svg>");
+	background-size: contain;
+	
+	/* pull the dot back to horizontally center it over the border */
+	margin-inline-start: calc( -1 * (
+		var(--timeline-to-content-gap) +
+		( var(--dot-diameter) / 2 ) +
+		( var(--stroke-width) / 2 )
+	) );
+	
+	/* push the content after the dot back
+	   to where it would have been, without the dot */
+	margin-inline-end: calc(
+		var(--timeline-to-content-gap) -
+		( var(--dot-diameter) / 2 ) +
+		( var(--stroke-width) / 2 )
+	);
+	
+	/* vertically center the dot
+	   with the cap height of the text that comes after it
+	   https://blog.kizu.dev/cap-height-align/ */
+	vertical-align: middle;
+	margin-block-start: calc(1ex - 1cap);
+
+}
+
+.timeline dd {
+	font-size: var(--font-size-4);
+	margin-inline-start: 0;
+}
+
+.presentDay {
+	--dot-diameter: 1.5rem;
+}
+
+.presentDay dt {
+	font-size: var(--font-size-3);
+}
+
+.presentDay dd {
+	font-size: var(--font-size-6);
+}
+
+
 /* fwd */
 
 .giantFwd {
