@@ -254,14 +254,30 @@ header a[href="#signup"] {
 		( var(--dot-diameter) / 2 ) +
 		( var(--stroke-width) / 2 )
 	);
-	
-	/* vertically center the dot
-	   with the cap height of the text that comes after it
-	   https://blog.kizu.dev/cap-height-align/ */
-	vertical-align: middle;
-	margin-block-start: calc(1ex - 1cap);
 
 }
+
+/* vertically center the dot
+   with the cap height of the text that comes after it
+   https://blog.kizu.dev/cap-height-align/ */
+
+.timeline dt {
+	/* Adjusted for Inter */
+	--cap: 0.7272727273em;
+}
+
+@supports (height: 1cap) {
+	.timeline dt {
+		--cap: 1cap;
+	}
+}
+
+.timeline dt::before {
+	vertical-align: middle;
+	margin-block-start: calc(1ex - var(--cap));
+}
+
+/* ok! done with dots! */
 
 .timeline dd {
 	font-size: var(--font-size-4);
