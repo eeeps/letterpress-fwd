@@ -158,15 +158,7 @@ header a[href="#signup"] {
 /* intro */
 
 .intro {
-	background-image: linear-gradient(
-		to top,
-		rgb(
-			var(--vermillion-r)
-			var(--vermillion-g)
-			var(--vermillion-b) / 0.05
-		),
-		transparent 20%
-	);
+	background-image: var(--section-gradient);
 }
 
 .lede {
@@ -195,6 +187,10 @@ header a[href="#signup"] {
 /* projectOne */
 
 /* timelineSection */
+
+.timelineSection {
+	background-image: var(--section-gradient);
+}
 
 .timeline {
 
