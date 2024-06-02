@@ -204,6 +204,12 @@ header a[href="#signup"] {
 	--timeline-to-content-gap: 1.5rem;
 
 	border-left: var(--stroke-width) solid var(--vermillion); /* todo clip or replace with clipped svg */
+	border-image: 
+		linear-gradient(
+			to bottom, 
+			var(--vermillion) 70%,
+			transparent
+    	) 1 100%;
 
 }
 
