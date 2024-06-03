@@ -122,19 +122,20 @@ img {
 	max-width: 20em; /* TODO stopgap placeholder... */
 }
 
-.small-caps-head {
+.small-caps-headline {
 	font-size: var(--font-size--1);
 	text-transform: uppercase;
 }
 
-.head {
+.headline {
 	font-weight: bold;
 	font-size: var(--font-size-0);
 }
 
+
 /* header */
 
-.header-wrapper {
+.headlineer-wrapper {
 	border-top: 1px solid black;
 }
 
@@ -254,26 +255,6 @@ header a[href="#signup"] {
 
 }
 
-/* vertically center the dot
-   with the cap height of the text that comes after it
-   https://blog.kizu.dev/cap-height-align/ */
-
-.timeline dt {
-	/* Adjusted for Inter */
-	--cap: 0.7272727273em;
-}
-
-@supports (height: 1cap) {
-	.timeline dt {
-		--cap: 1cap;
-	}
-}
-
-.timeline dt::before {
-	vertical-align: middle;
-	margin-block-start: calc(1ex - var(--cap));
-}
-
 /* ok! done with dots! */
 
 .timeline dd {
@@ -314,4 +295,28 @@ footer {
 
 footer a {
 	color: white;
+}
+
+
+
+/* utilities */
+
+/* vertically center a ::before psuedo-element
+   with the cap height of the text that comes after it
+   https://blog.kizu.dev/cap-height-align/ */
+
+.vertically-centered-before {
+	/* Adjusted for Inter */
+	--cap: 0.7272727273em;
+}
+
+@supports (height: 1cap) {
+	.vertically-centered-before {
+		--cap: 1cap;
+	}
+}
+
+.vertically-centered-before::before {
+	vertical-align: middle;
+	margin-block-start: calc(1ex - var(--cap));
 }
