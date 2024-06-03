@@ -234,11 +234,8 @@ header a[href="#signup"] {
 	display: inline-block;
 	inline-size: var(--dot-diameter);
 	block-size: var(--dot-diameter);
-	/* can't concat in url(), doh
-	   had to use the hex-code for vermillion here,
-	   won't update with variable change */
-	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23dd3b21' /></svg>");
-	background-size: contain;
+	background-color: var(--vermillion);
+	border-radius: 50%;
 	
 	/* pull the dot back to horizontally center it over the border */
 	margin-inline-start: calc( -1 * (
