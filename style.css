@@ -41,6 +41,7 @@ html {
 	--vermillion-r: 86.667%;
 	--vermillion-g: 23.137%;
 	--vermillion-b: 12.941%;
+	--light-gray: #999999;
 
 	/* type sizing scale */
 	--font-size--1: 0.75rem;
@@ -74,6 +75,9 @@ html, body {
 	padding: 0;
 }
 
+* {
+	box-sizing: border-box;
+}
 
 /* grid */
 
@@ -97,6 +101,11 @@ body > footer > * {
 
 /* basics */
 
+section {
+	padding-top: 2rem;
+	padding-bottom: 1rem;
+}
+
 h1, h2, h3, h4, h5, h6, hgroup, dt {
 	font-family: var(--inter);
 	font-kerning: normal; /* apply font kerning instructions */
@@ -116,10 +125,53 @@ a {
 	color: var(--vermillion);
 }
 
+p {
+	line-height: 1.3;
+}
+
 img {
+	display: block;
 	width: 100%;
 	height: auto;
-	max-width: 20em; /* TODO stopgap placeholder... */
+	max-width: 20rem; /* TODO stopgap placeholder... */
+}
+
+img,
+figure {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+button {
+	appearance: none;
+}
+
+button,
+.not-a-button {
+	background-color: var(--vermillion);
+	font-family: var(--inter);
+	color: white;
+	border-radius: 0.75em;
+	border: none;
+	font-size: var(--font-size-0);
+	font-weight: 500;
+	padding: 0.75em 1em;
+}
+
+.not-a-button {
+	inline-size: max-content;
+}
+
+.not-a-button a {
+	text-decoration: none;
+}
+
+.hollow-button {
+	background-color: transparent;
+	color: var(--vermillion);
+	border: 1px solid var(--vermillion);
 }
 
 .small-caps-headline {
@@ -135,7 +187,7 @@ img {
 
 /* header */
 
-.headlineer-wrapper {
+.header-wrapper {
 	border-top: 1px solid black;
 }
 
@@ -158,7 +210,8 @@ header a[href="#signup"] {
 
 /* intro */
 
-.intro {
+section.intro {
+	padding-top: 0;
 	background-image: var(--section-gradient);
 }
 
@@ -284,15 +337,41 @@ header a[href="#signup"] {
 	margin-block: 0;
 }
 
+.howYouCanHelp label {
+	display: block;
+	font-family: var(--inter);
+	font-size: var(--font-size-0);
+	font-weight: 400;
+}
+
+.howYouCanHelp input,
+.howYouCanHelp textarea {
+	display: block;
+	width: 100%;
+	font-size: var(--font-size-3);
+	padding: 0.75rem;
+	border: 1px solid var(--light-gray);
+	margin-top: 0.5rem;
+	margin-bottom: 2rem;
+}
+
+.howYouCanHelp textarea {
+	field-sizing: content;
+	resize: vertical;
+}
 
 /* footer */
 
 footer {
+	padding-top: 1rem;
+	margin-top: 4rem;
 	font-family: var(--inter);
 	background: var(--vermillion);
 	color: white;
 	padding-bottom: 80vw;
-	/* TODO replace with highest-res and optimize */
+	/* TODO
+	   I just did a quick/dirty export out of figma
+	   replace with original and optimize */
 	background-image: url("/media/job-press-bw.png");
 	background-blend-mode: multiply;
 	background-size: contain;
@@ -323,7 +402,7 @@ footer p {
 	block-size: 1.5em;
 	background-image: url("/media/instagram_logo.svg");
 	background-size: cover;
-	margin-right: 0.5em;
+	margin-right: 0.75em;
 }
 
 
