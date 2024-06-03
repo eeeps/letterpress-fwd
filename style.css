@@ -291,10 +291,39 @@ footer {
 	font-family: var(--inter);
 	background: var(--vermillion);
 	color: white;
+	padding-bottom: 80vw;
+	/* TODO replace with highest-res and optimize */
+	background-image: url("/media/job-press-bw.png");
+	background-blend-mode: multiply;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: bottom;
 }
 
 footer a {
 	color: white;
+}
+
+footer .headline {
+	margin-bottom: 0;
+}
+
+footer .headline + * {
+	margin-top: 0;
+}
+
+footer p {
+	font-size: var(--font-size-0);
+}
+
+.instagram::before {
+	content: "";
+	display: inline-block;
+	inline-size: 1.5em;
+	block-size: 1.5em;
+	background-image: url("/media/instagram_logo.svg");
+	background-size: cover;
+	margin-right: 0.5em;
 }
 
 
