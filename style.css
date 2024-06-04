@@ -70,14 +70,20 @@ html {
 
 /* resets */
 
+* {
+	box-sizing: border-box;
+}
+
 html, body {
 	margin: 0;
 	padding: 0;
 }
 
-* {
-	box-sizing: border-box;
+/* make margin collapsing and stacked ps in a grid ~equivalent */
+p + p {
+	margin-block-start: 0;
 }
+
 
 /* grid */
 
@@ -193,6 +199,7 @@ button,
 /* header */
 
 .header-wrapper {
+	margin-top: 1.1875rem;
 	border-top: 1px solid black;
 }
 
@@ -203,7 +210,7 @@ button,
 }
 
 .org-subhead {
-	margin-top: 0;
+	margin-block-start: 0;
 	text-transform: uppercase;
 	font-weight: normal;
 	font-size: var(--font-size-0);
