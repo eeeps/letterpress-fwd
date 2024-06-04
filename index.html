@@ -48,6 +48,8 @@ a centuries-old craft.
 
 </section>
 
+<div class="sections-wrapper">
+
 <section class="projectOne">
 
 <hgroup>
@@ -117,6 +119,8 @@ Letterpress Forward turns to other endangered printing resources
 
 </section>
 
+</div> <!-- /.sections-wrapper> -->
+
 <section class="fwd">
 
 <h2 class="giantFwd">Fwd:</h2>
@@ -182,6 +186,20 @@ Letterpress Forward is not currently recognized as a registered charitable organ
 
 <p><small class="headline">© 2024 Letterpress Forward Foundation</small></p>
 </footer>
+
+<script>
+// maybe abstract this into web component?
+const sectionsWrapper = document.querySelector( '.sections-wrapper' );
+const presentDay = sectionsWrapper.querySelector( '.presentDay' );
+
+function positionOfPresentDay() {
+	return presentDay.offsetTop / sectionsWrapper.clientHeight
+};
+
+console.log(positionOfPresentDay());
+
+sectionsWrapper.style.setProperty( '--top-of-presentDay', `${ positionOfPresentDay() * 100 }%` );
+</script>
 
 </body>
 </html>

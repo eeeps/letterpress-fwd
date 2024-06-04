@@ -84,6 +84,7 @@ html, body {
 /* body, and the sections within main, are stacked using normal flow layout */
 body > header,
 main > section,
+main > .sections-wrapper,
 body > footer {
 	display: grid;
 	grid-template-columns: 1.5rem 1fr 1.5rem;
@@ -94,10 +95,14 @@ body > footer {
    (but can break out into the left/right margins to be full bleed if it needs to) */
 body > header > *,
 main > section > *,
+main > .sections-wrapper > section > *,
 body > footer > * {
 	grid-column: 2;
 }
 
+.sections-wrapper section {
+	display: contents;
+}
 
 /* basics */
 
@@ -236,6 +241,29 @@ section.intro {
 
 .description {
 	margin-block-start: 0;
+}
+
+/* sections-wrapper */
+
+.sections-wrapper {
+	--top-of-presentDay: 0%; /* javascript sets this, fallback is no hardstop */
+	position: relative; /* need this to get offsetTop of presentDay in js */
+	background-image: linear-gradient(
+		to bottom,
+		transparent,
+		rgb(
+			var(--vermillion-r)
+			var(--vermillion-g)
+			var(--vermillion-b) / 0.05
+		) var(--top-of-presentDay),
+		transparent var(--top-of-presentDay),
+		transparent 80%,
+		rgb(
+			var(--vermillion-r)
+			var(--vermillion-g)
+			var(--vermillion-b) / 0.05
+		) 100%
+	);
 }
 
 /* projectOne */
