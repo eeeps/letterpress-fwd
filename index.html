@@ -45,6 +45,7 @@ a centuries-old craft.
 </figcaption>
 </figure>
 </article>
+
 </section>
 
 <div class="sections-wrapper">
@@ -56,9 +57,16 @@ a centuries-old craft.
 <p class="headline">A modern, accessible user experience for an irreplaceable letterpress community</p>
 </hgroup>
 
-<p>Starting with <a href="https://briarpress.org">Briar Press</a>, and then turning to other aging websites, Letterpress Forward will safeguard and restore electronic letterpress resources that are at risk of disappearing. <!--MORE--> Collaborating with members of the printing community and a proficient technical team, we’ll provide Briar Press with technical and financial stability, paired with an accessible user interface that functions across different platforms and is readable by people with varying color vision.</p>
+<shorten-sometimes shorten-when="(max-width: 600px)">
+<p>Starting with <a href="https://briarpress.org">Briar Press</a>, and then turning to other aging websites, Letterpress Forward will safeguard and restore electronic letterpress resources that are at risk of disappearing. <sometimes-hidden> Collaborating with members of the printing community and a proficient technical team, we’ll provide Briar Press with technical and financial stability, paired with an accessible user interface that functions across different platforms and is readable by people with varying color vision. </sometimes-hidden> </p>
 
+<sometimes-hidden>
 <p class="not-a-button hollow-button"><a href="#signup">Sign up for updates</a></p>
+</sometimes-hidden>
+
+</shorten-sometimes>
+
+
 
 <img
 	src="/media/iPhone.png"
@@ -71,14 +79,20 @@ a centuries-old craft.
 
 <h2 class="headline">Beginning summer 2024</h2>
 
-<p>The initial term of Letterpress Forward will include standing up the foundation <!--MORE--> (summer 2024); the relaunch of a more stable, secure, and usable Briar Press website; and the development of a roadmap for future initiatives. If you’d like to contribute to this work, or just want to follow our progress, please register your interest by signing up for updates.</p>
+<shorten-sometimes shorten-when="(max-width: 600px)">
+<p>The initial term of Letterpress Forward will include standing up the foundation <sometimes-hidden>(summer 2024); the relaunch of a more stable, secure, and usable Briar Press website; and the development of a roadmap for future initiatives. If you’d like to contribute to this work, or just want to follow our progress, please register your interest by signing up for updates. </sometimes-hidden> </p>
 
+<sometimes-hidden>
 <p class="not-a-button hollow-button"><a href="#signup">Sign up for updates</a></p>
+</sometimes-hidden>
+
+</shorten-sometimes>
 
 <dl class="timeline">
 
 <div>
-<dt class="headline">1995</dt><dd>
+<dt class="headline">1995</dt>
+<dd>
 Briar Press launches on the
 (still newish) World Wide Web
 </dd>
@@ -175,7 +189,7 @@ Letterpress Forward is not currently recognized as a registered charitable organ
 </p>
 
 <h3 class="headline">Donations</h3>
-<p><a href="#TODO">Donate to Briar Press</a></p>
+<p><a href="https://briarpress.org/donate">Donate to Briar Press</a></p>
 
 <h3 class="headline">Inquiries</h3>
 <p><a href="mailto:hello@letterpressfwd.org">hello@letterpressfwd.org</a></p>
@@ -194,10 +208,15 @@ function positionOfPresentDay() {
 	return presentDay.offsetTop / sectionsWrapper.clientHeight
 };
 
+
 console.log(positionOfPresentDay());
 
 sectionsWrapper.style.setProperty( '--top-of-presentDay', `${ positionOfPresentDay() * 100 }%` );
 </script>
+
+
+<script type="module" src="/scripts/shorten-sometimes.js"></script>
+
 
 </body>
 </html>
