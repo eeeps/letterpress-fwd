@@ -221,14 +221,18 @@ shorten-sometimes button.less {
 /* header */
 
 .header-wrapper {
-	margin-top: 1.1875rem;
-	border-top: 1px solid black;
+	margin-block-start: 1.1875rem;
+	border-block-start: 1px solid black;
+	display: flex;
+	justify-content: space-between;
+	padding-block-start: 0.67em;
 }
 
 .org-name {
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: var(--font-size--2);
+	margin-block-start: 0;
 }
 
 .org-subhead {
@@ -240,6 +244,13 @@ shorten-sometimes button.less {
 
 header a[href="#signup"] {
 	display: none;
+	font-family: var(--inter);
+	font-size: var(--font-size-0);
+	font-weight: 700;
+	text-decoration: none;
+}
+header a[href="#signup"]:hover {
+	text-decoration: underline;
 }
 
 /* intro */
@@ -247,14 +258,33 @@ header a[href="#signup"] {
 section.intro {
 	padding-top: 0;
 	background-image: var(--section-gradient);
+	overflow: clip; /* for carusel, consider wrapping it instead */
 }
 
 .lede {
 	font-size: var(--font-size-4);
 }
 
+.carousel-wrapper {
+	grid-column: 1/-1;
+	overflow: scroll;
+}
 .carousel {
-	grid-column: 0 / 3;
+	display: flex;
+	width: 300vw; /* change this based on number of items? */
+}
+
+.carousel figure.active {
+	margin-inline-start: 1.5rem;
+}
+
+.carousel figure:not(.active) img {
+	opacity: 0.5;
+}
+
+
+.carousel figure:not(.active) figcaption {
+	display: none;
 }
 
 .carousel figcaption {
@@ -484,4 +514,51 @@ footer p {
 .vertically-centered-before::before {
 	vertical-align: middle;
 	margin-block-start: calc(1ex - var(--cap));
+}
+
+
+
+/* media queries */
+
+@media (min-width: 600px) {
+	
+	.org-name,
+	.org-subhead {
+		font-size: var(--font-size-0);
+	}
+	
+	header a[href="#signup"] {
+		display: unset;
+	}
+	
+	.lede {
+		font-size: var(--font-size-6);
+	}
+	
+	body > header,
+	main > section,
+	main > .sections-wrapper,
+	body > footer {
+		display: grid;
+		grid-template-columns: 2.6875rem repeat( 11, 44fr 20fr ) 44fr 2.6875rem;
+	}
+	
+	.header-wrapper {
+		grid-column: 2 / -2;
+	}
+	
+	.lede {
+		grid-column: 2 / span 16;
+	}
+	
+	.carousel-wrapper {
+		grid-column: 1/-1;
+	}
+	
+	.carousel figure.active {
+		margin-inline-start: 2.6875rem;
+	}
+	
+
+	
 }
