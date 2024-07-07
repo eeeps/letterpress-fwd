@@ -457,13 +457,12 @@ footer {
 	color: white;
 	padding-bottom: 80vw;
 	/* TODO
-	   I just did a quick/dirty export out of figma
-	   replace with original and optimize */
-	background-image: url("/media/job-press-bw.png");
+	   optimize */
+	background-image: url("/media/background-pilot.png");
 	background-blend-mode: multiply;
-	background-size: contain;
+	background-size: 140% auto;
 	background-repeat: no-repeat;
-	background-position: bottom;
+	background-position: 30% bottom;
 }
 
 footer a {
@@ -541,6 +540,7 @@ footer p {
 	body > footer {
 		display: grid;
 		grid-template-columns: 2.6875rem repeat( 11, 44fr 20fr ) 44fr 2.6875rem;
+		grid-auto-rows: min-content;
 	}
 	
 	.header-wrapper {
@@ -559,6 +559,56 @@ footer p {
 		margin-inline-start: 2.6875rem;
 	}
 	
-
 	
+	main > .sections-wrapper .projectOneHeader,
+	main > .sections-wrapper .projectOneDescription {
+		grid-column: 14 / span 9;
+	}
+
+	main > .sections-wrapper .projectOneDescription {
+		grid-row: 2;
+		align-self: top;
+	}
+	
+	main > .sections-wrapper .iPhoneMockup {
+		grid-column: 2 / span 11;
+		grid-row: 1 / span 2;
+		padding-top: 5rem;
+	}
+	
+	.timelineSection .headline {
+		grid-column: 2/ span 11;
+	}
+	.timelineSection .description {
+		grid-column: 2/ span 11;
+	}
+	.timelineSection .timeline {
+		grid-column: 14 / span 9;
+	}
+	
+	/* fwd */
+
+	.giantFwd {
+		grid-column: 2 / span 11;
+	}
+	
+	.backStory {
+		grid-column: 2 / span 11;
+	}
+
+	.howYouCanHelp {
+		grid-column: 14 / span 9;
+	}
+		
+	footer {
+		background-size: min( 70vw, 576px ) auto; /* 70vw was guess-and-checked, 576 taken from figma... */
+		background-repeat: no-repeat;
+		background-position: right -120px bottom;
+		padding-bottom: 0;
+		min-height: 400px; /* for press background */
+	}
+	
+	footer p {
+		grid-column: 2 / span 11;
+	}
 }
