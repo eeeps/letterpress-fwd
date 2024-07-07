@@ -113,6 +113,10 @@ body > footer > * {
 
 /* basics */
 
+body {
+	font-size: var(--font-size-2);
+}
+
 section {
 	padding-top: 2rem;
 	padding-bottom: 1rem;
@@ -145,7 +149,6 @@ img {
 	display: block;
 	width: 100%;
 	height: auto;
-	max-width: 20rem; /* TODO stopgap placeholder... */
 }
 
 img,
@@ -272,6 +275,10 @@ section.intro {
 .carousel {
 	display: flex;
 	width: 300vw; /* change this based on number of items? */
+}
+
+.carousel img {
+	max-width: 20rem; /* TODO stopgap placeholder... */
 }
 
 .carousel figure.active {
@@ -570,6 +577,7 @@ footer p {
 		align-self: top;
 	}
 	
+	/* todo reduce specificity? */
 	main > .sections-wrapper .iPhoneMockup {
 		grid-column: 2 / span 11;
 		grid-row: 1 / span 2;
@@ -604,11 +612,101 @@ footer p {
 		background-size: min( 70vw, 576px ) auto; /* 70vw was guess-and-checked, 576 taken from figma... */
 		background-repeat: no-repeat;
 		background-position: right -120px bottom;
-		padding-bottom: 0;
+		padding-bottom: 1rem;
 		min-height: 400px; /* for press background */
 	}
 	
 	footer p {
 		grid-column: 2 / span 11;
 	}
+
+}
+
+@media ( min-width: calc( 1160px + 2.6875rem * 2 ) ) {
+
+	/* font sizes */
+
+	body {
+		font-size: var(--font-size-4);
+	}
+	
+	.lede {
+		font-size: var(--font-size-7);
+	}
+	
+	.small-caps-headline {
+		font-size: var(--font-size-1);
+	}
+	
+	.headline {
+		font-size: var(--font-size-2);
+	}
+	
+	.carousel figcaption {
+		font-size: var(--font-size-1);
+	}
+	
+	.timeline dd {
+		font-size: var(--font-size-6);
+	}
+	
+	.presentDay dt {
+		font-size: var(--font-size-5);
+	}
+	
+	.presentDay dd {
+		font-size: var(--font-size-7);
+	}
+	
+	.giantFwd {
+		font-size: 160px;
+	}
+	
+	.howYouCanHelp label {
+		font-size: var(--font-size-1);
+	}
+	button,
+	.not-a-button {
+		font-size: var(--font-size-1);
+	}
+	footer .headline {
+		font-size: var(--font-size-0); /* stay small */
+	}
+	
+
+	/* grid */
+
+	body > header,
+	main > section,
+	main > .sections-wrapper,
+	body > footer {
+		grid-template-columns: 1fr repeat( 11, 68px 31px ) 68px 1fr;
+	}
+	
+	.lede {
+		grid-column: 2 / span 13;
+	}
+
+	/* todo reduce specificity? */
+	main > .sections-wrapper .iPhoneMockup {
+		grid-column: 2 / span 10;
+	}
+	
+	.timelineSection .headline,
+	.timelineSection .description {
+		grid-column: 2 / span 9;
+	}
+
+	.backStory {
+		grid-column: 2 / span 9;
+	}
+	
+	footer p {
+		grid-column: 2 / span 7;
+	}
+
+	footer {
+		background-position: right calc( 50vw - 540px ) bottom;
+	}
+
 }
