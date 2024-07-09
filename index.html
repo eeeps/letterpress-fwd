@@ -64,9 +64,11 @@ a centuries-old craft.
 
 </section>
 
-<div class="sections-wrapper">
+<div class="sections-wrapper projectOneAndTimelineSection">
 
 <section class="projectOne">
+
+<div class="projectOneCopy">
 
 <hgroup class="projectOneHeader">
 <h2 class="small-caps-headline">Project No. 1</h2>
@@ -74,6 +76,7 @@ a centuries-old craft.
 </hgroup>
 
 <shorten-sometimes shorten-when="(max-width: 600px)" class="projectOneDescription">
+
 <p>Starting with <a href="https://briarpress.org">Briar Press</a>, and then turning to other aging websites, Letterpress Forward will safeguard and restore electronic letterpress resources that are at risk of disappearing. <sometimes-hidden> Collaborating with members of the printing community and a proficient technical team, we’ll provide Briar Press with technical and financial stability, paired with an accessible user interface that functions across different platforms and is readable by people with varying color vision. </sometimes-hidden> </p>
 
 <sometimes-hidden>
@@ -82,7 +85,7 @@ a centuries-old craft.
 
 </shorten-sometimes>
 
-
+</div><!-- /.projectOneCopy -->
 
 <img class="iPhoneMockup"
 	src="/media/iPhone.png"
@@ -93,9 +96,11 @@ a centuries-old craft.
 
 <section class="timelineSection">
 
-<h2 class="headline">Beginning summer 2024</h2>
+<div class="timelineSectionCopy">
 
-<shorten-sometimes shorten-when="(max-width: 600px)" class="description">
+<h2 class="timelineHeader headline">Beginning summer 2024</h2>
+
+<shorten-sometimes shorten-when="(max-width: 600px)" class="timelineDescription">
 <p>The initial term of Letterpress Forward will include standing up the foundation <sometimes-hidden>(summer 2024); the relaunch of a more stable, secure, and usable Briar Press website; and the development of a roadmap for future initiatives. If you’d like to contribute to this work, or just want to follow our progress, please register your interest by signing up for updates. </sometimes-hidden> </p>
 
 <sometimes-hidden>
@@ -103,6 +108,8 @@ a centuries-old craft.
 </sometimes-hidden>
 
 </shorten-sometimes>
+
+</div><!-- /.timelineSectionCopy -->
 
 <dl class="timeline">
 
@@ -215,6 +222,7 @@ Letterpress Forward is not currently recognized as a registered charitable organ
 <p><small class="headline">© 2024 Letterpress Forward Foundation</small></p>
 </footer>
 
+<!-- 
 <script>
 // maybe abstract this into web component?
 const sectionsWrapper = document.querySelector( '.sections-wrapper' );
@@ -227,8 +235,9 @@ function positionOfPresentDay() {
 
 console.log(positionOfPresentDay());
 
-sectionsWrapper.style.setProperty( '--top-of-presentDay', `${ positionOfPresentDay() * 100 }%` );
+sectionsWrapper.style.setProperty( '~~top-of-presentDay', `${ positionOfPresentDay() * 100 }%` );
 </script>
+ -->
 
 
 <script type="module" src="/scripts/shorten-sometimes.js"></script>

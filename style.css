@@ -91,7 +91,7 @@ p + p {
 /* body, and the sections within main, are stacked using normal flow layout */
 body > header,
 main > section,
-main > .sections-wrapper,
+main > div:where(.sections-wrapper),
 body > footer {
 	display: grid;
 	grid-template-columns: 1.5rem 1fr 1.5rem;
@@ -102,7 +102,7 @@ body > footer {
    (but can break out into the left/right margins to be full bleed if it needs to) */
 body > header > *,
 main > section > *,
-main > .sections-wrapper > section > *,
+main > div:where(.sections-wrapper) > section > *,
 body > footer > * {
 	grid-column: 2;
 }
@@ -543,7 +543,7 @@ footer p {
 	
 	body > header,
 	main > section,
-	main > .sections-wrapper,
+	main > div:where(.sections-wrapper), /* give same specifitiy */
 	body > footer {
 		display: grid;
 		grid-template-columns: 2.6875rem repeat( 11, 44fr 20fr ) 44fr 2.6875rem;
@@ -566,33 +566,54 @@ footer p {
 		margin-inline-start: 2.6875rem;
 	}
 	
+	/* projectOne and timeline */
 	
-	main > .sections-wrapper .projectOneHeader,
-	main > .sections-wrapper .projectOneDescription {
+	.projectOneAndTimelineSection::before {
+		content: '';
+		background-image: var(--section-gradient);
+		grid-column: 1 / -1;
+		grid-row: 1 / 4;
+	}
+	
+	.projectOneCopy {
+		grid-row: 1;
 		grid-column: 14 / span 9;
+	}
+	
+	.iPhoneMockup {
+		grid-column: 2 / span 11;
+		grid-row: 1 / span 5;
+		padding-top: 5rem;
+		padding-left: 2vw;
+		padding-right: 4vw;
+	}
+	
+	.timelineSectionCopy {
+		grid-column: 2 / span 11;
+		grid-row: 5 / span 2;
+	}
+	.timeline {
+		display: contents
+	}
+	.timeline > div {
+		grid-column: 14 / span 9;
+	}
+	.timeline :nth-child(1) {
+		grid-row: 2;
+	}
+	.timeline :nth-child(2) {
+		grid-row: 3;
+	}
+	.timeline :nth-child(3) {
+		grid-row: 4;
+	}
+	.timeline :nth-child(4) {
+		grid-row: 5;
+	}
+	.timeline :nth-child(5) {
+		grid-row: 6;
 	}
 
-	main > .sections-wrapper .projectOneDescription {
-		grid-row: 2;
-		align-self: top;
-	}
-	
-	/* todo reduce specificity? */
-	main > .sections-wrapper .iPhoneMockup {
-		grid-column: 2 / span 11;
-		grid-row: 1 / span 2;
-		padding-top: 5rem;
-	}
-	
-	.timelineSection .headline {
-		grid-column: 2/ span 11;
-	}
-	.timelineSection .description {
-		grid-column: 2/ span 11;
-	}
-	.timelineSection .timeline {
-		grid-column: 14 / span 9;
-	}
 	
 	/* fwd */
 
