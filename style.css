@@ -151,14 +151,6 @@ img {
 	height: auto;
 }
 
-img,
-figure {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-	margin-left: 0;
-	margin-right: 0;
-}
-
 button {
 	appearance: none;
 }
@@ -652,15 +644,27 @@ footer p {
 		grid-column: 14 / span 9;
 	}
 	
-	.iPhoneMockup {
+	/* We want the image to size itself based on the height of the text cells
+	   We *do not* want the text cells to expand to fit the height of the image.
+	   
+	   Using a container and absolute positioning as a hack while we wait for 
+	   https://bugs.webkit.org/show_bug.cgi?id=276681
+	   Based on Miriam's pen: https://codepen.io/miriamsuzanne/pen/poRqXGd */
+	.iPhoneMockupContainer {
 		grid-column: 2 / span 11;
 		grid-row: 1 / span 3;
+		position: relative;
+	}
+	.iPhoneMockup {
+		position: absolute;
+		top: 4rem;
+		right: 0;
+		bottom: 0;
+		left: 0;
 		width: 100%;
 		height: 100%;
-		contain: size;
 		object-fit: contain;
-		align-self: end; /* stick to bottom of cell */
-		margin-bottom: -4rem; /* pull down across end of gradient */
+		object-position: center bottom;
 	}
 	
 	.timelineSectionCopy {
