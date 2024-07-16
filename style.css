@@ -654,10 +654,14 @@ footer p {
 	
 	.iPhoneMockup {
 		grid-column: 2 / span 11;
-		grid-row: 1 / span 5;
-		padding-top: 5rem;
-		padding-left: 2vw;
-		padding-right: 4vw;
+		grid-row: 1 / span 3;
+		padding-block-start: 5rem;
+		padding-inline-start: 2vw;
+		padding-inline-end: 4vw;
+		max-height: 100%;
+		object-fit: contain;
+		align-self: end; /* stick to bottom of cell */
+		margin-bottom: -4rem; /* pull down across end of gradient */
 	}
 	
 	.timelineSectionCopy {
