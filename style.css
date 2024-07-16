@@ -332,13 +332,57 @@ section.intro {
 	);
 }
 
+/* projectOne and timeline */
+
+/* gradient that ends before presentDay */
+/* stacking this under
+   (and stacking the timeline line!)
+   means we can't rely on auto-placement
+   because auto-placement doesn't ever want to put two things in the same cell.
+   So: we have to explicitly assign everything row + column */
+.projectOneAndTimelineSection::before {
+	content: '';
+	background-image: var(--section-gradient);
+	grid-column: 1 / -1;
+	grid-row: 1 / 6;
+}
+
+/* explicit grid tracks */
+
+.projectOneCopy {
+	grid-row: 1;
+}
+
+.iPhoneMockup {
+	grid-row: 2;
+}
+
+.timelineSectionCopy {
+	grid-row: 3;
+}
+
+.timeline :nth-child(1) {
+	grid-row: 4;
+}
+.timeline :nth-child(2) {
+	grid-row: 5;
+}
+.timeline :nth-child(3) {
+	grid-row: 6;
+}
+.timeline :nth-child(4) {
+	grid-row: 7;
+}
+.timeline :nth-child(5) {
+	grid-row: 8;
+}
+
 /* projectOne */
 
-/* timelineSection */
 
-.timelineSection {
-	background-image: var(--section-gradient);
-}
+
+
+/* timelineSection */
 
 .timeline {
 
@@ -347,20 +391,41 @@ section.intro {
 	--between-items-gap: 6rem;
 	--timeline-to-content-gap: 1.5rem;
 
-	border-left: var(--stroke-width) solid var(--vermillion); /* todo clip or replace with clipped svg */
+}
+
+/* make the timeline entries participate in the grid, themselves
+   so that we can align the gradient to the border before presentDay */
+.timeline {
+	display: contents
+}
+
+.timeline > div {
+	grid-column: 2 / span 1;
+}
+
+.timeline div {
+	padding-block-end: calc( var(--between-items-gap) / 2);
+	padding-inline-start: var(--timeline-to-content-gap);
+}
+
+ /* no padding on the first element, so timeline starts in the middle of the dot */
+.timeline div + div {
+	padding-block-start: calc( var(--between-items-gap) / 2);
+}
+
+/* red line */
+.timeline::before {
+	content: "";
+	grid-column: 2 / span 1;
+	grid-row: 4 / span 5;
+	border-inline-start: var(--stroke-width) solid var(--vermillion); /* todo clip or replace with clipped svg */
 	border-image: 
 		linear-gradient(
 			to bottom, 
 			var(--vermillion) 70%,
 			transparent
-    	) 1 100%;
-
-}
-
-.timeline div {
-	margin-block-start: calc( var(--between-items-gap) / 2);
-	margin-block-end: calc( var(--between-items-gap) / 2);
-	margin-inline-start: var(--timeline-to-content-gap);
+		) 1 100%;
+	margin-inline-start: calc( -1 * var(--stroke-width) );
 }
 
 /* pull first item up
@@ -568,13 +633,20 @@ footer p {
 	
 	/* projectOne and timeline */
 	
-	.projectOneAndTimelineSection::before {
-		content: '';
-		background-image: var(--section-gradient);
-		grid-column: 1 / -1;
-		grid-row: 1 / 4;
+	/* red line */
+	.timeline::before {
+		grid-column: 14 / span 9;
+		grid-row: 2 / span 5;
 	}
 	
+	/* gradient that terminates before presentDay */
+	.projectOneAndTimelineSection::before {
+		grid-row: 1 / span 3;
+	}
+
+	
+	/* again because of the stacked gradient and timeline,
+	   we need to explicitly assign all of the grid cells */
 	.projectOneCopy {
 		grid-row: 1;
 		grid-column: 14 / span 9;
@@ -592,12 +664,12 @@ footer p {
 		grid-column: 2 / span 11;
 		grid-row: 5 / span 2;
 	}
-	.timeline {
-		display: contents
-	}
+
 	.timeline > div {
 		grid-column: 14 / span 9;
 	}
+	
+
 	.timeline :nth-child(1) {
 		grid-row: 2;
 	}
@@ -613,6 +685,7 @@ footer p {
 	.timeline :nth-child(5) {
 		grid-row: 6;
 	}
+	
 
 	
 	/* fwd */
