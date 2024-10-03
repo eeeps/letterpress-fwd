@@ -1,4 +1,4 @@
-module.exports = function( eleventyConfig ) {
+export default function ( eleventyConfig ) {
 	eleventyConfig.addPassthroughCopy( 'style.css' );
 	eleventyConfig.addPassthroughCopy( 'fonts/Inter/static/Inter-Bold.woff2' );
 	eleventyConfig.addPassthroughCopy( 'fonts/Inter/static/Inter-Regular.woff2' );
