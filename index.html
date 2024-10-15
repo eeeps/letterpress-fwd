@@ -183,18 +183,22 @@ We created Letterpress Forward to restore and sustain Briar Press, along with ot
 <h3 class="headline">How you can help</h3>
 <p>You can lend your support to the project by joining our mailing list. We’ll send you occasional updates, no more than one per month, with progress updates and ways you can pitch in.</p>
 
-<form id=signupForm>
+<form
+	id="signupForm"
+	method="POST"
+	action="https://hooks.airtable.com/workflows/v1/genericWebhook/appffk9L1NpnhSONs/wflXrHkPvtFKNX91y/wtrk1IkFQDIAGgEx1"
+>
 
 <label>Name
-<input type=text required>
+<input name="name" type=text required>
 </label>
 
 <label>Email
-<input type=text required>
+<input name="email" type=text required>
 </label>
 
 <label>Comment (optional)
-<textarea type=text></textarea>
+<textarea name="comment" type=text></textarea>
 </label>
 
 <button type=submit>

@@ -155,6 +155,10 @@ button {
 	appearance: none;
 }
 
+button[type=submit] {
+	cursor: pointer;
+}
+
 button,
 .not-a-button {
 	background-color: var(--vermillion);
