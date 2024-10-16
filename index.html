@@ -186,7 +186,7 @@ We created Letterpress Forward to restore and sustain Briar Press, along with ot
 <form
 	id="signupForm"
 	method="POST"
-	action="https://hooks.airtable.com/workflows/v1/genericWebhook/appffk9L1NpnhSONs/wflXrHkPvtFKNX91y/wtrk1IkFQDIAGgEx1"
+	action="/.netlify/functions/handleSignup"
 >
 
 <label>Name
@@ -248,6 +248,9 @@ sectionsWrapper.style.setProperty( '~~top-of-presentDay', `${ positionOfPresentD
 
 <script type="module" src="/scripts/shorten-sometimes.js"></script>
 
-
+<script type="module">
+import enhanceForm from '/scripts/submitSignupForm.js';
+enhanceForm( document.querySelector( '#signupForm' ) );
+</script>
 </body>
 </html>
