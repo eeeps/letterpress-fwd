@@ -52,6 +52,7 @@ html {
 
 <h1>Thank you!</h1>
 <p>We’ll be in touch.</p>
+<p><a href="/">Go back.</a></p>
 
 </body>
 </html>

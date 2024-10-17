@@ -4,7 +4,6 @@ async function submitForm( formEl ) {
 
 	const response = await fetch( formEl.action, {
 	    method: 'POST',
-	    mode: 'no-cors', // Airtable doesn't support CORS
 	    body: new URLSearchParams( new FormData( formEl ) )
 	} );
 	
@@ -15,8 +14,8 @@ async function submitForm( formEl ) {
 
 function updateDomSuccess( formEl ) {
 
-	// todo: this is provisional, do better
-	formEl.innerHTML = '<p>thank u!</p>'
+	formEl.innerHTML = `<p class="thanks">Thank you!</p>
+<p>We’ll be in touch.</p>`;
 
 }
 

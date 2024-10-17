@@ -515,6 +515,13 @@ section.intro {
 	resize: vertical;
 }
 
+.thanks {
+	font-size: var(--font-size-7);
+	font-family: var(--garamond);
+	font-weight: normal;
+	margin-block-end: 1rem;
+}
+
 /* footer */
 
 footer {
