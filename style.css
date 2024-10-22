@@ -269,27 +269,34 @@ section.intro {
 .carousel {
 	grid-column: 1/-1;
 	display: flex;
+	gap: 1em;
 	width: 100vw;
 	overflow-x: scroll;
-	scroll-snap-type: x mandatory;	
+	scroll-snap-type: x mandatory;
+	scroll-padding-inline-start: 10vw; /* todo how to align with rest of content? */
 }
 
 .carousel figure {
 	scroll-snap-align: start;
+	margin: 0;
 }
 
 .carousel img {
 	--height-of-everything-else: 20rem;
+	--min-height: 150px;
+	--max-width: 70vw;
+	--shortest-aspect-ratio: calc( 1566 / 1718 );
 	height: clamp(
 		/* don't make them tiny, ever */
-		150px,
+		var(--min-height),
 		
 		/* sized so the first section approximately fills the "fold" */
 		100vh - var(--height-of-everything-else),
 		
 		/* but don't clip vertically (on tall+narrow screens) */
-		100vw / calc( var( --width ) / var( --height ) )
+		var(--max-width) / var(--shortest-aspect-ratio)
 	);
+	object-fit: contain;
 	width: auto;
 }
 
