@@ -265,31 +265,47 @@ section.intro {
 }
 
 .carousel-wrapper {
-	grid-column: 1/-1;
-	overflow: scroll;
 }
 .carousel {
+	grid-column: 1/-1;
 	display: flex;
-	width: 300vw; /* change this based on number of items? */
+	width: 100vw;
+	overflow-x: scroll;
+	scroll-snap-type: x mandatory;	
+}
+
+.carousel figure {
+	scroll-snap-align: start;
 }
 
 .carousel img {
-	max-width: 20rem; /* TODO stopgap placeholder... */
+	--height-of-everything-else: 20rem;
+	height: clamp(
+		/* don't make them tiny, ever */
+		150px,
+		
+		/* sized so the first section approximately fills the "fold" */
+		100vh - var(--height-of-everything-else),
+		
+		/* but don't clip vertically (on tall+narrow screens) */
+		100vw / calc( var( --width ) / var( --height ) )
+	);
+	width: auto;
 }
 
 .carousel figure.active {
 	margin-inline-start: 1.5rem;
 }
 
+/* 
 .carousel figure:not(.active) img {
 	opacity: 0.5;
 }
 
-
 .carousel figure:not(.active) figcaption {
 	display: none;
 }
-
+*/
 .carousel figcaption {
 	border-block-start: 1px solid black;
 	font-family: var(--inter);
