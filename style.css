@@ -264,13 +264,16 @@ section.intro {
 	font-size: var(--font-size-4);
 }
 
-.carousel-wrapper {
-}
-.carousel {
+main looping-carousel {
+	width: 100vw;
 	grid-column: 1/-1;
+}
+
+.carousel {
+
 	display: flex;
 	gap: 1em;
-	width: 100vw;
+
 	overflow-x: scroll;
 	scroll-snap-type: x mandatory;
 	scroll-padding-inline-start: 10vw; /* todo how to align with rest of content? */
@@ -278,11 +281,12 @@ section.intro {
 
 .carousel figure {
 	scroll-snap-align: start;
+	scroll-snap-stop: always; /* only ever advance one at a time */
 	margin: 0;
 }
 
 .carousel img {
-	--height-of-everything-else: 20rem;
+	--height-of-everything-else: 24rem; /* todo improve? heuristics or? */
 	--min-height: 150px;
 	--max-width: 70vw;
 	--shortest-aspect-ratio: calc( 1566 / 1718 );
@@ -300,19 +304,22 @@ section.intro {
 	width: auto;
 }
 
+/*
 .carousel figure.active {
 	margin-inline-start: 1.5rem;
 }
+*/
 
-/* 
-.carousel figure:not(.active) img {
+/* todo only dim stuff if script ran */
+/* all of the slides except for the first visible slide */
+.carousel figure:not(:nth-child(1 of .visible)) img {
 	opacity: 0.5;
 }
 
-.carousel figure:not(.active) figcaption {
-	display: none;
+.carousel figure:not(:nth-child(1 of .visible)) figcaption {
+	visibility: hidden; /* if I display none this it screws up the intersection observer??? */
 }
-*/
+
 .carousel figcaption {
 	border-block-start: 1px solid black;
 	font-family: var(--inter);
