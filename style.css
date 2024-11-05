@@ -32,6 +32,8 @@
 
 html {
 
+	scroll-behavior: smooth; /* for jumping to signup form */
+
 	/* font stacks */
 	--garamond: "EB Garamond", serif;
 	--inter: "Inter", sans-serif;
@@ -302,9 +304,10 @@ main looping-carousel {
 
 .carousel img {
 	--height-of-everything-else: 24rem; /* todo improve? heuristics or? */
-	--min-height: 150px;
+	--min-height: 300px;
 	--max-width: 70vw;
 	--shortest-aspect-ratio: calc( 1566 / 1718 );
+	/* TODO redo clamp as max(min()) in order to make sure max height wins over min height? */
 	height: clamp(
 		/* don't make them tiny, ever */
 		var(--min-height),
@@ -317,6 +320,9 @@ main looping-carousel {
 	);
 	object-fit: contain;
 	width: auto;
+	mix-blend-mode: multiply;
+	transform: translate3d(0,0,0); /* hack fix */
+	/* https://stackoverflow.com/questions/70891365/css-mix-blend-mode-difference-issue-in-safari */
 }
 
 /*
@@ -569,8 +575,13 @@ main looping-carousel {
 	resize: vertical;
 }
 
+.singupForm {
+	margin-block-start: 3rem;
+}
+
 .thanks {
 	font-size: var(--font-size-7);
+	color: var(--vermillion);
 	font-family: var(--garamond);
 	font-weight: normal;
 	margin-block-end: 1rem;
@@ -735,6 +746,7 @@ footer p {
 	.timelineSectionCopy {
 		grid-column: 2 / span 11;
 		grid-row: 5 / span 2;
+		padding-block-start: 0;
 	}
 
 	.timeline > div {
@@ -767,7 +779,7 @@ footer p {
 	}
 	
 	.backStory {
-		grid-column: 2 / span 11;
+		grid-column: 2 / span 9;
 	}
 
 	.howYouCanHelp {
