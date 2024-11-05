@@ -62,9 +62,9 @@ html {
 		rgb(
 			var(--vermillion-r)
 			var(--vermillion-g)
-			var(--vermillion-b) / 0.05
+			var(--vermillion-b) / 0.10
 		),
-		transparent 20%
+		transparent 50%
 	);
 
 }
@@ -363,14 +363,14 @@ main looping-carousel {
 		rgb(
 			var(--vermillion-r)
 			var(--vermillion-g)
-			var(--vermillion-b) / 0.05
+			var(--vermillion-b) / 0.10
 		) var(--top-of-presentDay),
 		transparent var(--top-of-presentDay),
 		transparent 80%,
 		rgb(
 			var(--vermillion-r)
 			var(--vermillion-g)
-			var(--vermillion-b) / 0.05
+			var(--vermillion-b) / 0.10
 		) 100%
 	);
 }
@@ -387,13 +387,18 @@ main looping-carousel {
 	content: '';
 	background-image: var(--section-gradient);
 	grid-column: 1 / -1;
-	grid-row: 1 / 6;
+	grid-row: 1 / 5;
 }
 
 /* explicit grid tracks */
 
 .projectOneCopy {
 	grid-row: 1;
+	padding-block-end: 3rem;
+}
+
+.iPhoneMockupContainer {
+	grid-row: 8;
 }
 
 .iPhoneMockup {
@@ -401,23 +406,25 @@ main looping-carousel {
 }
 
 .timelineSectionCopy {
-	grid-row: 3;
+	grid-row: 9;
+	padding-block-start: 3rem;
+	padding-block-end: 1rem;
 }
 
 .timeline :nth-child(1) {
-	grid-row: 4;
+	grid-row: 3;
 }
 .timeline :nth-child(2) {
-	grid-row: 5;
+	grid-row: 4;
 }
 .timeline :nth-child(3) {
-	grid-row: 6;
+	grid-row: 5;
 }
 .timeline :nth-child(4) {
-	grid-row: 7;
+	grid-row: 6;
 }
 .timeline :nth-child(5) {
-	grid-row: 8;
+	grid-row: 7;
 }
 
 /* projectOne */
@@ -432,7 +439,7 @@ main looping-carousel {
 	--dot-diameter: 1rem;
 	--stroke-width: 0.25rem;
 	--between-items-gap: 6rem;
-	--timeline-to-content-gap: 1.5rem;
+	--timeline-to-content-gap: 3rem;
 
 }
 
@@ -460,7 +467,7 @@ main looping-carousel {
 .timeline::before {
 	content: "";
 	grid-column: 2 / span 1;
-	grid-row: 4 / span 5;
+	grid-row: 3 / span 5;
 	border-inline-start: var(--stroke-width) solid var(--vermillion); /* todo clip or replace with clipped svg */
 	border-image: 
 		linear-gradient(
@@ -468,7 +475,7 @@ main looping-carousel {
 			var(--vermillion) 70%,
 			transparent
 		) 1 100%;
-	margin-inline-start: calc( -1 * var(--stroke-width) );
+	/* margin-inline-start: calc( -1 * var(--stroke-width) ); */
 }
 
 /* pull first item up
@@ -496,7 +503,7 @@ main looping-carousel {
 	/* pull the dot back to horizontally center it over the border */
 	margin-inline-start: calc( -1 * (
 		var(--timeline-to-content-gap) +
-		( var(--dot-diameter) / 2 ) +
+		( var(--dot-diameter) / 2 ) -
 		( var(--stroke-width) / 2 )
 	) );
 	
@@ -504,7 +511,7 @@ main looping-carousel {
 	   to where it would have been, without the dot */
 	margin-inline-end: calc(
 		var(--timeline-to-content-gap) -
-		( var(--dot-diameter) / 2 ) +
+		( var(--dot-diameter) / 2 ) -
 		( var(--stroke-width) / 2 )
 	);
 
