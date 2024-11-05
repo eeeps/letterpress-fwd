@@ -401,6 +401,7 @@ main looping-carousel {
 .projectOneCopy {
 	grid-row: 1;
 	padding-block-end: 3rem;
+	padding-block-start: 2rem;
 }
 
 .iPhoneMockupContainer {
