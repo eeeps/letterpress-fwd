@@ -270,7 +270,7 @@ main looping-carousel {
 	grid-column: 1/-1;
 	display: grid;
 	grid-template-columns: subgrid;
-	outline: 5px solid red;
+	/* outline: 5px solid red; */
 }
 
 .carousel {
@@ -282,7 +282,7 @@ main looping-carousel {
 
 	overflow-x: scroll;
 	scroll-snap-type: x mandatory;
-	scroll-padding-inline-start: 10vw; /* todo how to align with rest of content? */
+	scroll-padding-inline-start: 5vw; /* todo how to align with rest of content? */
 
 }
 .slideWrapper {
@@ -292,7 +292,7 @@ main looping-carousel {
 
 .activeSlideWindow {
 	grid-column: 2 / -2;
-	outline: 5px solid blue;
+	/* outline: 5px solid blue; */
 	grid-row: 1;
 }
 
@@ -325,12 +325,6 @@ main looping-carousel {
 	/* https://stackoverflow.com/questions/70891365/css-mix-blend-mode-difference-issue-in-safari */
 }
 
-/*
-.carousel figure.active {
-	margin-inline-start: 1.5rem;
-}
-*/
-
 
 
 /* todo only dim stuff if script ran */
@@ -341,6 +335,11 @@ main looping-carousel {
 
 .carousel figure:not(:nth-child(1 of .visible)) figcaption {
 	visibility: hidden; /* if I display none this it screws up the intersection observer??? */
+}
+
+.carousel {
+	padding-inline-end: 100vw;
+	padding-inline-start: 5vw;
 }
 
 .carousel figcaption {
