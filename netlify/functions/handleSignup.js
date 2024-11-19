@@ -1,5 +1,8 @@
 export default async ( req, context ) => {
 
+//	console.log('hello');
+
+	// validate incoming request
 	if ( req.method !== 'POST' ) {
 		return new Response('405 Method Not Allowed', {
 			status: 405,
@@ -16,27 +19,110 @@ export default async ( req, context ) => {
 	}
 	
 	const fd = await req.formData();
-	console.log(fd); // where does this go?
+//	console.log(fd);
 	
-	if ( !fd.has('email') ||
-	     !fd.has('name') ) {
+	if ( !fd.has( 'email' ) ||
+	     !fd.has( 'name' ) ) {
 		return new Response('400 Bad Request', {
 			status: 400,
 			statusText: 'Requests must include `email` and `name` keys'
 		} );
 	}
+	
+	// just a little email validation
+	const emailRegex = /.+\@.+/;
+	if ( !( emailRegex.test( fd.get( 'email' ) ) ) ) {
+		return new Response('400 Bad Request', {
+			status: 400,
+			statusText: 'Invalid email address'
+		} );
+	}
 
-	// todo? get rid of the automation and just make this a regular API request
-	// (hiding the Personal Access Token in a secret, of course)
-	const url = 'https://hooks.airtable.com/workflows/v1/genericWebhook/appffk9L1NpnhSONs/wflXrHkPvtFKNX91y/wtrk1IkFQDIAGgEx1'
-	const airtableResponse = await fetch( url, {
-	    method: 'POST',
-	    body: new URLSearchParams( fd )
+
+	const apiUrl = `https://api.bloomerang.co/v2`;
+	
+	// make a new constituent
+	
+	// make some pretty big assumptions about their name!
+	const firstName = fd.get( 'name' ).split(' ')[ 0 ];
+	const lastName = fd.get( 'name' ).split(' ').slice( 1 ).join( ' ' );
+	
+	const constituentReponse = await fetch( `${ apiUrl }/constituent`, {
+		method: 'POST',
+		headers: {
+			'content-type': 'application/json',
+			'X-API-KEY': process.env.BLOOMERANG_API_KEY
+		},
+		body: JSON.stringify( {
+			'Type': 'Individual',
+			'FirstName': firstName,
+			'LastName': lastName
+		} )
 	} );
 	
-	if ( airtableResponse.ok ) {
-		// todo also check for success:true? in the body (if we keep doing the automation thing)
-		return new Response( `<!doctype html>
+	// if Bloomerang failed, bail
+	if ( !constituentReponse.ok ) {
+		console.log( constituentReponse );
+		const constituentErrorJson = await constituentReponse.json();
+		const constituentErrorMessage = constituentErrorJson[ 'Message' ];
+		return new Response('500 Internal Server Error', {
+			status: 500,
+			statusText: `Upstream error; Bloomerang failed to create a constituent and returned HTTP code ${ constituentReponse.status } ${ constituentReponse.statusText }. Bloomerang gave the following error message: ${ constituentErrorMessage }`
+		} );
+	}
+	
+	// get accountID
+	const constituentJson = await constituentReponse.json();
+	const constituentId = constituentJson[ 'Id' ];
+//	console.log( constituentJson, constituentId );
+	
+	
+	// make a new email record (attached to the new constituent)
+	
+	const emailResponse = await fetch( `${ apiUrl }/email`, {
+		method: 'POST',
+		headers: {
+			'content-type': 'application/json',
+			'X-API-KEY': process.env.BLOOMERANG_API_KEY
+		},
+		body: JSON.stringify( {
+			'AccountId': constituentId,
+			'Type': 'Home',
+			'Value': fd.get( 'email' ),
+			'IsPrimary': true
+		} )
+	} );
+	
+	// if Bloomerang failed, rollback the constituent AND bail
+	if ( !emailResponse.ok ) {
+		console.log( emailResponse );
+		
+		// rollback
+		const deleteResponse = await fetch( `${ apiUrl }/constituent/${ constituentId }`, {
+			method: 'DELETE',
+			headers: {
+				'X-API-KEY': process.env.BLOOMERANG_API_KEY
+			}
+		} ); // if this fails, oh well...
+		
+		// bail
+		const emailErrorJson = await emailResponse.json();
+		const emailErrorMessage = emailErrorJson[ 'Message' ];
+		return new Response('500 Internal Server Error', {
+			status: 500,
+			statusText: `Upstream error; Bloomerang failed to create a an email address record and returned HTTP code ${ emailResponse.status } ${ emailResponse.statusText }. Bloomerang gave the following error message: ${ emailErrorMessage }`
+		} );
+	}
+	
+	// todo make a new note with the contents of the comments field
+	// const noteResponse = await fetch( `${ apiUrl }/note`, {
+	//		method: 'POST',
+	// etc etc
+	// should I classify it in any way?
+	// don't roll anything back or complain if this fails, it's just gravy
+	
+	// success!
+	return new Response( `<!doctype html>
 <html lang="en">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
@@ -57,21 +143,13 @@ html {
 </body>
 </html>
 `,
-			{
-				status: 200,
-				statusText: 'OK',
-				headers: {
-					'content-type': 'text/html'
-				}
+		{
+			status: 200,
+			statusText: 'OK',
+			headers: {
+				'content-type': 'text/html'
 			}
-		)
-	} else {
-		// todo pass errors
-		const body = await airtableResponse.text();
-		return new Response( `Upstream error; HTTP code ${ airtableResponse.status } ${ airtableResponse.statusText }; said, “${ body }”`, {
-			status: 500,
-			statusText: 'Internal Service Error'
-		} )
-	}
+		}
+	)
 
 };
