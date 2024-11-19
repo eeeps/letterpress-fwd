@@ -22,19 +22,30 @@ function updateDomSuccess( formEl ) {
 
 function updateDomFail( formEl, detailedError ) {
 
-	const errorDom = `<div class="errorBar">
-<p>
-	There was a problem submitting your information.
-	Try again, but if the problem persists,
-	just send us an email at <a href="mailto:todo">todo</a>.
-</p>
-<details>
-	<summary>Technical details:</summary>
-	<p>${ detailedError }</p>
-</details>
-</div>`;
+	const errorEl = document.createElement( 'div' );
+	errorEl.classList.add( 'errorBar' );
+	
+	const p = document.createElement( 'p' );
+	p.innerHTML = `
+There was a problem submitting your information.
+Try again, but if the problem persists,
+just send us an email at <a href="mailto:todo">todo</a>.
+`;
 
-	formEl.prepend( errorDom );
+	const details = document.createElement( 'details' );
+	const summary = document.createElement( 'summary' );
+	const detailed_p = document.createElement( 'p' );
+	
+	summary.textContent = 'Technical details:';
+	detailed_p.textContent = detailedError;
+
+	details.appendChild( summary );
+	details.appendChild( detailed_p );
+	
+	errorEl.appendChild( p );
+	errorEl.appendChild( details );
+
+	formEl.prepend( errorEl );
 
 }
 
