@@ -1,3 +1,20 @@
+function firstAndLast( fullName ) {
+	// make some pretty big assumptions about names!
+	const splitNames = fullName
+		.split(' ')
+		.filter( d => d !== ' ' && d !== '' );
+	if ( splitNames.length === 0 ) {
+		return { firstName: 'N/A', lastName: 'N/A' };
+	}
+	if ( splitNames.length === 1 ) {
+		return { firstName: splitNames[ 0 ], lastName: 'N/A' };
+	}
+	return {
+		firstName: splitNames[ 0 ],
+		lastName: splitNames.slice( 1 ).join( ' ' )
+	};
+}
+
 export default async ( req, context ) => {
 
 //	console.log('hello');
@@ -44,8 +61,7 @@ export default async ( req, context ) => {
 	// make a new constituent
 	
 	// make some pretty big assumptions about their name!
-	const firstName = fd.get( 'name' ).split(' ')[ 0 ];
-	const lastName = fd.get( 'name' ).split(' ').slice( 1 ).join( ' ' );
+	const { firstName, lastName } = firstAndLast( fd.get( 'name' ) );
 	
 	const constituentReponse = await fetch( `${ apiUrl }/constituent`, {
 		method: 'POST',
