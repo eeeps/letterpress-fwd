@@ -29,7 +29,7 @@ function updateDomFail( formEl, detailedError ) {
 	p.innerHTML = `
 There was a problem submitting your information.
 Try again, but if the problem persists,
-just send us an email at <a href="mailto:todo">todo</a>.
+just send us an email at <a href="mailto:hello@letterpressfwd.org">hello@letterpressfwd.org</a>.
 `;
 
 	const details = document.createElement( 'details' );
