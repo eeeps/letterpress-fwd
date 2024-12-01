@@ -130,11 +130,19 @@ export default async ( req, context ) => {
 		} );
 	}
 	
-	// todo make a new note with the contents of the comments field
-	// const noteResponse = await fetch( `${ apiUrl }/note`, {
-	//		method: 'POST',
-	// etc etc
-	// should I classify it in any way?
+	// make a new note with the contents of the comments field
+	const noteResponse = await fetch( `${ apiUrl }/note`, {
+		method: 'POST',
+		headers: {
+			'content-type': 'application/json',
+			'X-API-KEY': process.env.BLOOMERANG_API_KEY
+		},
+		body: JSON.stringify( {
+			'AccountId': constituentId,
+			'Date': ( new Date() ).toISOString().split( 'T' )[ 0 ],
+			'Note': fd.get( 'comment' ) // todo sanitize in any way?
+		} )
+	} );
 	// don't roll anything back or complain if this fails, it's just gravy
 	
 	// success!
