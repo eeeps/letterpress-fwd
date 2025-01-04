@@ -558,6 +558,10 @@ main looping-carousel {
 	font-size: var(--font-size-0);
 	font-weight: 400;
 }
+label.honeypot, input[name=honeypot] {
+	visibility: hidden;
+	height: 0;
+}
 
 .howYouCanHelp input,
 .howYouCanHelp textarea {

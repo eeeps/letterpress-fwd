@@ -55,6 +55,13 @@ export default async ( req, context ) => {
 		} );
 	}
 
+	// reject bots that filled the hidden honeypot field
+	if ( fd.has( 'honeypot' ) ) {
+		return new Response('400 Bad Request', {
+			status: 400,
+			statusText: 'Bad Request'
+		} );
+	}
 
 	const apiUrl = `https://api.bloomerang.co/v2`;
 	

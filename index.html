@@ -236,6 +236,11 @@ We created Letterpress Forward to restore and sustain Briar Press, along with ot
 	action="/.netlify/functions/handleSignup"
 >
 
+<label class="honeypot">
+Don’t fill this out if you’re human:
+<input type=text name="honeypot">
+</label>
+
 <label>Name
 <input name="name" type=text required pattern=".*\S.*"> <!-- not just whitespace -->
 </label>
