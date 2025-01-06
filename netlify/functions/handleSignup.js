@@ -3,6 +3,7 @@ function firstAndLast( fullName ) {
 	const splitNames = fullName
 		.split(' ')
 		.filter( d => d !== ' ' && d !== '' );
+	// client side validation should prevent this but...
 	if ( splitNames.length === 0 ) {
 		return { firstName: 'N/A', lastName: 'N/A' };
 	}
@@ -55,8 +56,9 @@ export default async ( req, context ) => {
 		} );
 	}
 
-	// reject bots that filled the hidden honeypot field
-	if ( fd.has( 'honeypot' ) ) {
+	// reject bots that filled (or ignored!?) the hidden honeypot field
+	if ( !fd.has( 'source' ) ||
+	     fd.get( 'source' ).length > 0 ) {
 		return new Response('400 Bad Request', {
 			status: 400,
 			statusText: 'Bad Request'
